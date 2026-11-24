@@ -1,0 +1,17 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Connexion – AutoClip</title>
+<style>body{font-family:system-ui,sans-serif;max-width:760px;margin:40px auto;padding:0 16px;line-height:1.6;
+color:#0d0d0f;background:#fff}h1{font-size:28px}h2{font-size:18px;margin-top:28px}p,li{color:#3a3a40}</style></head><body><h1>Connexion à AutoClip…</h1>
+<p id="msg">Retour vers AutoClip sur ton ordinateur.</p>
+<script>
+  // TikTok renvoie ici avec ?code=…&state=… : on transmet tel quel à AutoClip, qui tourne sur ce PC.
+  var q = window.location.search;
+  var target = "http://localhost:8000/api/oauth/tiktok/callback" + q;
+  if (q.indexOf("code=") >= 0 || q.indexOf("error=") >= 0) {
+    window.location.replace(target);
+  } else {
+    document.getElementById("msg").textContent = "Cette page sert uniquement au retour de connexion TikTok.";
+  }
+</script>
+<p><small>Si rien ne se passe, vérifie qu'AutoClip est bien lancé sur ce PC.</small></p>
+</body></html>
